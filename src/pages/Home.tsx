@@ -1,102 +1,90 @@
 import React from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, MapPin, Clock, Phone } from 'lucide-react';
+import Menu from '../components/Menu';
 
 export function Home() {
   return (
-    <div className="pt-20">
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <header className="relative h-[70vh] flex items-center justify-center">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: 'url("https://static.wixstatic.com/media/11062b_7170340f908c46daa4e7e05a55d6fd88~mv2.jpg/v1/fill/w_1899,h_520,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/11062b_7170340f908c46daa4e7e05a55d6fd88~mv2.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-orange-900/40"></div>
-        </div>
-
-        <div className="relative z-10 text-center px-4">
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-4">
-            Nick's Deli & Burritos
-          </h2>
-          <a 
-            href="#menu"
-            className="inline-flex items-center gap-2 bg-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:bg-orange-600 transition shadow-lg"
-          >
-            View Our Menu
-            <ChevronRight className="h-5 w-5" />
-          </a>
+      <header className="relative h-screen bg-black flex items-center justify-center">
+        <div className="container mx-auto px-4">
+          <div className="relative max-w-6xl mx-auto">
+            <div className="text-center">
+              <img 
+                src="/images/nicks-deli-logo.png"
+                alt="Visit us at Nick's Deli"
+                className="w-full max-w-4xl mx-auto h-auto object-contain"
+                style={{ 
+                  minHeight: '60vh',
+                  filter: 'brightness(1.02)' // Slightly enhance the white parts
+                }}
+              />
+            </div>
+          </div>
         </div>
       </header>
 
+      {/* Quick Info Section */}
+      <section className="bg-white py-8 shadow-md">
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex items-center justify-center gap-4">
+            <Clock className="h-6 w-6 text-primary" />
+            <div>
+              <h3 className="font-semibold">Hours</h3>
+              <p className="text-gray-600">Mon-Sun: 7am - 4pm</p>
+            </div>
+          </div>
+          <div className="flex items-center justify-center gap-4">
+            <Phone className="h-6 w-6 text-primary" />
+            <div>
+              <h3 className="font-semibold">Contact</h3>
+              <p className="text-gray-600">(562) 431-6474</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Menu Section */}
-      <section id="menu" className="py-16">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Our Menu</h2>
-          
-          {/* Breakfast */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6">Breakfast</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { name: "Breakfast Burrito", price: "$9.99", description: "Eggs, potatoes, cheese & choice of meat" },
-                { name: "Chorizo & Eggs", price: "$10.99", description: "Served with rice, beans & tortillas" },
-                { name: "Huevos Rancheros", price: "$10.99", description: "Eggs over easy, served on corn tortillas with ranchera sauce" },
-                { name: "Chilaquiles", price: "$11.99", description: "Tortilla chips, ranchera sauce, eggs, cheese & sour cream" }
-              ].map((item, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="text-lg font-semibold">{item.name}</h4>
-                    <span className="text-orange-600 font-bold">{item.price}</span>
-                  </div>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+      <section id="menu" className="section-padding bg-white">
+        <Menu />
+      </section>
 
-          {/* Burritos */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6">Burritos</h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { name: "Regular Burrito", price: "$9.99", description: "Choice of meat, rice, beans & cheese" },
-                { name: "Super Burrito", price: "$11.99", description: "Choice of meat, rice, beans, cheese, guacamole & sour cream" },
-                { name: "Wet Burrito", price: "$12.99", description: "Super burrito covered with red or green sauce & melted cheese" },
-                { name: "Veggie Burrito", price: "$9.99", description: "Rice, beans, cheese, lettuce, tomato & guacamole" }
-              ].map((item, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="text-lg font-semibold">{item.name}</h4>
-                    <span className="text-orange-600 font-bold">{item.price}</span>
-                  </div>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              ))}
+      {/* Locations Section */}
+      <section className="section-padding bg-background">
+        <div className="container">
+          <h2 className="section-title">Our Locations</h2>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="location-card">
+              <MapPin className="w-8 h-8 mb-4 text-primary" />
+              <h3 className="text-xl font-semibold mb-2">Seal Beach</h3>
+              <p className="text-gray-600">
+                223 Main Street<br />
+                Seal Beach, CA 90740
+              </p>
+              <a 
+                href="https://maps.google.com/?q=223+Main+Street+Seal+Beach+CA+90740" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block mt-4 text-primary hover:text-primary/80"
+              >
+                Get Directions →
+              </a>
             </div>
-          </div>
-
-          {/* Plates */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-bold mb-6">Combination Plates</h3>
-            <p className="text-gray-600 mb-6">All plates served with rice, beans & tortillas</p>
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { name: "Two Taco Plate", price: "$12.99", description: "Choice of meat" },
-                { name: "Two Enchilada Plate", price: "$13.99", description: "Choice of meat, red or green sauce" },
-                { name: "Chile Relleno Plate", price: "$13.99", description: "Two cheese-stuffed poblano peppers" },
-                { name: "Fajitas Plate", price: "$15.99", description: "Choice of meat with grilled peppers & onions" }
-              ].map((item, index) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition">
-                  <div className="flex justify-between items-center mb-2">
-                    <h4 className="text-lg font-semibold">{item.name}</h4>
-                    <span className="text-orange-600 font-bold">{item.price}</span>
-                  </div>
-                  <p className="text-gray-600">{item.description}</p>
-                </div>
-              ))}
+            <div className="location-card">
+              <MapPin className="w-8 h-8 mb-4 text-primary" />
+              <h3 className="text-xl font-semibold mb-2">Los Alamitos</h3>
+              <p className="text-gray-600">
+                10900 Los Alamitos Blvd.<br />
+                Los Alamitos, CA 90720
+              </p>
+              <a 
+                href="https://maps.google.com/?q=10900+Los+Alamitos+Blvd+Los+Alamitos+CA+90720" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block mt-4 text-primary hover:text-primary/80"
+              >
+                Get Directions →
+              </a>
             </div>
           </div>
         </div>

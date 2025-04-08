@@ -6,6 +6,7 @@ import { Home } from './pages/Home';
 import { Location } from './pages/Location';
 import { Reviews } from './pages/Reviews';
 import { Contact } from './pages/Contact';
+import { MenuPage } from './pages/Menu';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/menu" element={<MenuPage />} />
         <Route path="/location" element={<Location />} />
         <Route path="/reviews" element={<Reviews />} />
         <Route path="/contact" element={<Contact />} />

@@ -1,85 +1,112 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, UtensilsCrossed } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import nicksLogo from '../assets/nicks-logo.png';
 
 export function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const handleNavClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    navigate(path);
+    setIsOpen(false);
+  };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-orange-900/95 p-6 z-50">
-      <div className="container mx-auto flex items-center justify-between">
-        <Link 
-          to="/" 
-          className="flex items-center gap-2 text-white hover:text-orange-300 transition"
-        >
-          <UtensilsCrossed className="h-8 w-8" />
-          <span className="text-xl font-bold">Nick's Deli</span>
-        </Link>
+    <nav className="fixed w-full top-0 z-50 bg-black shadow-md">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <a href="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center py-2">
+            <img 
+              src={nicksLogo}
+              alt="Nick's Deli" 
+              className="h-14 w-auto brightness-200 hover:brightness-125 transition-all duration-300"
+            />
+          </a>
 
-        {/* Mobile Menu Button */}
-        <button 
-          className="text-white md:hidden"
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? (
-            <X className="h-8 w-8" />
-          ) : (
-            <Menu className="h-8 w-8" />
-          )}
-        </button>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="absolute top-full left-0 right-0 bg-orange-900/95 p-4 md:hidden">
-            <div className="flex flex-col gap-4">
-              <Link 
-                to="/" 
-                className="text-white hover:text-orange-300 transition"
-                onClick={() => setIsMenuOpen(false)}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="/" onClick={(e) => handleNavClick(e, '/')} className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400">Home</a>
+            <a href="/menu" onClick={(e) => handleNavClick(e, '/menu')} className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400">Menu</a>
+            <a href="/location" onClick={(e) => handleNavClick(e, '/location')} className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400">Location</a>
+            <a href="/reviews" onClick={(e) => handleNavClick(e, '/reviews')} className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400">Reviews</a>
+            <a href="/contact" onClick={(e) => handleNavClick(e, '/contact')} className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400">Contact</a>
+            <div className="flex flex-col items-end">
+              <a 
+                href="tel:+15624316474" 
+                className="text-yellow-400 font-semibold hover:text-white transition text-sm"
               >
-                Menu
-              </Link>
-              <Link 
-                to="/location" 
-                className="text-white hover:text-orange-300 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Location
-              </Link>
-              <Link 
-                to="/reviews" 
-                className="text-white hover:text-orange-300 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Reviews
-              </Link>
-              <Link 
-                to="/contact" 
-                className="text-white hover:text-orange-300 transition"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Contact
-              </Link>
+                (562) 431-6474
+              </a>
+              <span className="text-gray-400">Call to place your order</span>
             </div>
           </div>
-        )}
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link to="/" className="text-white hover:text-orange-300 transition">
-            Menu
-          </Link>
-          <Link to="/location" className="text-white hover:text-orange-300 transition">
-            Location
-          </Link>
-          <Link to="/reviews" className="text-white hover:text-orange-300 transition">
-            Reviews
-          </Link>
-          <Link to="/contact" className="text-white hover:text-orange-300 transition">
-            Contact
-          </Link>
+          {/* Mobile Menu Button */}
+          <button 
+            className="md:hidden text-white"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Navigation */}
+      {isOpen && (
+        <div className="md:hidden bg-black border-t border-gray-800">
+          <div className="container mx-auto px-4 py-3 space-y-4">
+            <a 
+              href="/" 
+              onClick={(e) => handleNavClick(e, '/')}
+              className="block text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400"
+            >
+              Home
+            </a>
+            <a 
+              href="/menu" 
+              onClick={(e) => handleNavClick(e, '/menu')}
+              className="block text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400"
+            >
+              Menu
+            </a>
+            <a 
+              href="/location" 
+              onClick={(e) => handleNavClick(e, '/location')}
+              className="block text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400"
+            >
+              Location
+            </a>
+            <a 
+              href="/reviews" 
+              onClick={(e) => handleNavClick(e, '/reviews')}
+              className="block text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400"
+            >
+              Reviews
+            </a>
+            <a 
+              href="/contact" 
+              onClick={(e) => handleNavClick(e, '/contact')}
+              className="block text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400"
+            >
+              Contact
+            </a>
+            <div className="pt-2 border-t border-gray-800">
+              <a 
+                href="tel:+15624316474" 
+                className="block text-yellow-400 font-semibold hover:text-white"
+                onClick={() => setIsOpen(false)}
+              >
+                (562) 431-6474
+              </a>
+              <span className="text-gray-400">Call to place your order</span>
+            </div>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
