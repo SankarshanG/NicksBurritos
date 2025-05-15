@@ -118,10 +118,21 @@ export function Reviews() {
             {/* Call to Action */}
             <div className="mt-16 text-center">
               <div className="inline-block bg-black text-white px-8 py-4 rounded-lg transform transition-transform hover:scale-105">
-                <p className="text-xl font-semibold mb-2">Ready to Try Our Food?</p>
-                <a href="tel:+15624316474" className="text-2xl font-bold hover:text-primary">
-                  (562) 431-6474
-                </a>
+                <p className="text-xl font-semibold mb-4">Ready to Try Our Food?</p>
+                <div className="space-y-2">
+                  <div>
+                    <p className="text-gray-300 mb-1">Seal Beach Location</p>
+                    <a href="tel:+15625985072" className="text-2xl font-bold hover:text-primary">
+                      (562) 598-5072
+                    </a>
+                  </div>
+                  <div className="pt-2 border-t border-gray-700">
+                    <p className="text-gray-300 mb-1">Los Alamitos Location</p>
+                    <a href="tel:+15627957766" className="text-2xl font-bold hover:text-primary">
+                      (562) 795-7766
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

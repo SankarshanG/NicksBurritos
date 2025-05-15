@@ -2,16 +2,34 @@ import React from 'react';
 import { MapPin, Clock, Phone, ExternalLink } from 'lucide-react';
 
 const locationData = {
-  address: "223 Main St",
-  city: "Seal Beach",
-  state: "CA",
-  zip: "90740",
-  phone: "(562) 431-6474",
-  hours: [
-    { day: "Monday - Friday", time: "6:00 AM - 4:00 PM" },
-    { day: "Saturday", time: "6:00 AM - 4:00 PM" },
-    { day: "Sunday", time: "7:00 AM - 3:00 PM" }
-  ],
+  sealBeach: {
+    address: "223 Main St",
+    city: "Seal Beach",
+    state: "CA",
+    zip: "90740",
+    phone: "(562) 598-5072",
+    hours: [
+      { day: "Monday - Friday", time: "6:30 AM - 6:00 PM" },
+      { day: "Saturday", time: "6:30 AM - 5:00 PM" },
+      { day: "Sunday", time: "6:30 AM - 4:00 PM" }
+    ]
+  },
+  losAlamitos: {
+    address: "10900 Los Alamitos Blvd",
+    city: "Los Alamitos",
+    state: "CA",
+    zip: "90720",
+    phone: "(562) 795-7766",
+    hours: [
+      { day: "Monday", time: "6:30 AM - 7:00 PM" },
+      { day: "Tuesday", time: "6:30 AM - 6:00 PM" },
+      { day: "Wednesday", time: "6:30 AM - 7:00 PM" },
+      { day: "Thursday", time: "6:30 AM - 7:00 PM" },
+      { day: "Friday", time: "6:30 AM - 7:00 PM" },
+      { day: "Saturday", time: "6:30 AM - 5:00 PM" },
+      { day: "Sunday", time: "6:30 AM - 4:00 PM" }
+    ]
+  },
   features: [
     "Cash Only",
     "Street Parking",
@@ -28,11 +46,11 @@ export function Locations() {
       <h1 className="text-3xl font-bold text-center mb-6">Visit Us</h1>
       
       <div className="space-y-6">
-        {/* Address Card */}
+        {/* Seal Beach Location */}
         <div className="bg-white rounded-lg shadow-lg p-5">
           <div className="flex items-center gap-3 mb-4">
             <MapPin className="h-6 w-6 text-gray-800" />
-            <h2 className="text-2xl font-semibold text-gray-800">Our Location</h2>
+            <h2 className="text-2xl font-semibold text-gray-800">Seal Beach Location</h2>
           </div>
           <div className="space-y-4">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
@@ -43,8 +61,8 @@ export function Locations() {
                   rel="noopener noreferrer"
                   className="hover:text-primary-dark"
                 >
-                  <p className="font-medium">{locationData.address}</p>
-                  <p className="text-gray-600">{locationData.city}, {locationData.state} {locationData.zip}</p>
+                  <p className="font-medium">{locationData.sealBeach.address}</p>
+                  <p className="text-gray-600">{locationData.sealBeach.city}, {locationData.sealBeach.state} {locationData.sealBeach.zip}</p>
                 </a>
               </div>
               <a 
@@ -67,12 +85,24 @@ export function Locations() {
             <h2 className="text-2xl font-semibold text-gray-800">Hours of Operation</h2>
           </div>
           <div className="space-y-4">
-            {locationData.hours.map((schedule, index) => (
-              <div key={index} className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                <span className="font-medium text-gray-900">{schedule.day}</span>
-                <span className="text-gray-600">{schedule.time}</span>
-              </div>
-            ))}
+            <div className="mb-6">
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">Seal Beach</h3>
+              {locationData.sealBeach.hours.map((schedule, index) => (
+                <div key={index} className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                  <span className="font-medium text-gray-900">{schedule.day}</span>
+                  <span className="text-gray-600">{schedule.time}</span>
+                </div>
+              ))}
+            </div>
+            <div className="pt-4 border-t border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">Los Alamitos</h3>
+              {locationData.losAlamitos.hours.map((schedule, index) => (
+                <div key={index} className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+                  <span className="font-medium text-gray-900">{schedule.day}</span>
+                  <span className="text-gray-600">{schedule.time}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -82,11 +112,19 @@ export function Locations() {
             <Phone className="h-6 w-6 text-gray-800" />
             <h2 className="text-2xl font-semibold text-gray-800">Contact Us</h2>
           </div>
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
-            <span className="font-medium text-gray-900">Phone</span>
-            <a href={`tel:${locationData.phone}`} className="text-primary hover:text-primary-dark">
-              {locationData.phone}
-            </a>
+          <div className="space-y-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+              <span className="font-medium text-gray-900">Seal Beach</span>
+              <a href={`tel:${locationData.sealBeach.phone}`} className="text-primary hover:text-primary-dark">
+                {locationData.sealBeach.phone}
+              </a>
+            </div>
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+              <span className="font-medium text-gray-900">Los Alamitos</span>
+              <a href={`tel:${locationData.losAlamitos.phone}`} className="text-primary hover:text-primary-dark">
+                {locationData.losAlamitos.phone}
+              </a>
+            </div>
           </div>
         </div>
 

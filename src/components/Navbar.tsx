@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import nicksLogo from '../assets/nicks-logo.png';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 20);
+    };
+
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleNavClick = (e: React.MouseEvent, path: string) => {
     e.preventDefault();
@@ -15,15 +28,23 @@ export function Navbar() {
   };
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-black shadow-md">
+    <nav 
+      className={`fixed w-full top-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-black/90 backdrop-blur-md shadow-xl py-2' 
+          : 'bg-black py-4'
+      }`}
+    >
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center">
           {/* Logo */}
-          <a href="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center py-2">
+          <a href="/" onClick={(e) => handleNavClick(e, '/')} className="flex items-center">
             <img 
               src={nicksLogo}
               alt="Nick's Deli" 
-              className="h-14 w-auto brightness-200 hover:brightness-125 transition-all duration-300"
+              className={`w-auto brightness-200 hover:brightness-125 transition-all duration-500 ${
+                isScrolled ? 'h-10' : 'h-14'
+              }`}
             />
           </a>
 
@@ -34,14 +55,20 @@ export function Navbar() {
             <a href="/location" onClick={(e) => handleNavClick(e, '/location')} className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400">Location</a>
             <a href="/reviews" onClick={(e) => handleNavClick(e, '/reviews')} className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400">Reviews</a>
             <a href="/contact" onClick={(e) => handleNavClick(e, '/contact')} className="text-white relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-yellow-400 after:transition-all after:duration-300 hover:after:w-full hover:text-yellow-400">Contact</a>
-            <div className="flex flex-col items-end">
+            <div className="flex items-center gap-4">
               <a 
-                href="tel:+15624316474" 
-                className="text-yellow-400 font-semibold hover:text-white transition text-sm"
+                href="tel:+15625985072" 
+                className="text-yellow-400 hover:text-white transition-colors text-sm font-medium"
               >
-                (562) 431-6474
+                Seal Beach: (562) 598-5072
               </a>
-              <span className="text-gray-400">Call to place your order</span>
+              <span className="text-gray-600">|</span>
+              <a 
+                href="tel:+15627957766" 
+                className="text-yellow-400 hover:text-white transition-colors text-sm font-medium"
+              >
+                Los Alamitos: (562) 795-7766
+              </a>
             </div>
           </div>
 
@@ -95,14 +122,22 @@ export function Navbar() {
               Contact
             </a>
             <div className="pt-2 border-t border-gray-800">
-              <a 
-                href="tel:+15624316474" 
-                className="block text-yellow-400 font-semibold hover:text-white"
-                onClick={() => setIsOpen(false)}
-              >
-                (562) 431-6474
-              </a>
-              <span className="text-gray-400">Call to place your order</span>
+              <div className="flex flex-col gap-2">
+                <a 
+                  href="tel:+15625985072" 
+                  className="text-yellow-400 font-medium hover:text-white"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Seal Beach: (562) 598-5072
+                </a>
+                <a 
+                  href="tel:+15627957766" 
+                  className="text-yellow-400 font-medium hover:text-white"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Los Alamitos: (562) 795-7766
+                </a>
+              </div>
             </div>
           </div>
         </div>

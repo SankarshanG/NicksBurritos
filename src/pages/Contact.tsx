@@ -52,9 +52,9 @@ export function Contact() {
                     <div>
                       <p className="font-medium text-gray-900">Hours</p>
                       <div className="text-gray-600">
-                        <p>Monday - Friday: 7:00 AM - 6:00 PM</p>
-                        <p>Saturday: 7:00 AM - 5:00 PM</p>
-                        <p>Sunday: 7:00 AM - 4:00 PM</p>
+                        <p>Monday - Friday: 6:30 AM - 6:00 PM</p>
+                        <p>Saturday: 6:30 AM - 5:00 PM</p>
+                        <p>Sunday: 6:30 AM - 4:00 PM</p>
                       </div>
                     </div>
                   </div>
@@ -94,7 +94,8 @@ export function Contact() {
                     <div>
                       <p className="font-medium text-gray-900">Hours</p>
                       <div className="text-gray-600">
-                        <p>Monday - Friday: 6:30 AM - 7:00 PM</p>
+                        <p>Monday - Thursday: 6:30 AM - 7:00 PM</p>
+                        <p>Friday: 6:30 AM - 7:00 PM</p>
                         <p>Saturday: 6:30 AM - 5:00 PM</p>
                         <p>Sunday: 6:30 AM - 4:00 PM</p>
                       </div>
@@ -107,10 +108,21 @@ export function Contact() {
             {/* Call to Action */}
             <div className="mt-16 text-center">
               <div className="inline-block bg-black text-white px-8 py-4 rounded-lg transform transition-transform hover:scale-105">
-                <p className="text-xl font-semibold mb-2">Ready to Order?</p>
-                <a href="tel:+15624316474" className="text-2xl font-bold hover:text-primary">
-                  (562) 431-6474
-                </a>
+                <p className="text-xl font-semibold mb-4">Ready to Order?</p>
+                <div className="space-y-2">
+                  <div>
+                    <p className="text-gray-300 mb-1">Seal Beach Location</p>
+                    <a href="tel:+15625985072" className="text-2xl font-bold hover:text-primary">
+                      (562) 598-5072
+                    </a>
+                  </div>
+                  <div className="pt-2 border-t border-gray-700">
+                    <p className="text-gray-300 mb-1">Los Alamitos Location</p>
+                    <a href="tel:+15627957766" className="text-2xl font-bold hover:text-primary">
+                      (562) 795-7766
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

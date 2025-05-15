@@ -21,9 +21,9 @@ export function Location() {
                 </p>
                 <div className="border-t pt-4">
                   <h4 className="font-semibold mb-2">Hours:</h4>
-                  <p className="text-gray-600">Monday - Friday: 7:00 AM - 6:00 PM</p>
-                  <p className="text-gray-600">Saturday: 7:00 AM - 5:00 PM</p>
-                  <p className="text-gray-600">Sunday: 7:00 AM - 4:00 PM</p>
+                  <p className="text-gray-600">Monday - Friday: 6:30 AM - 6:00 PM</p>
+                  <p className="text-gray-600">Saturday: 6:30 AM - 5:00 PM</p>
+                  <p className="text-gray-600">Sunday: 6:30 AM - 4:00 PM</p>
                 </div>
               </div>
             </div>
@@ -40,7 +40,11 @@ export function Location() {
                 </p>
                 <div className="border-t pt-4">
                   <h4 className="font-semibold mb-2">Hours:</h4>
-                  <p className="text-gray-600">Monday - Friday: 6:30 AM - 7:00 PM</p>
+                  <p className="text-gray-600">Monday: 6:30 AM - 7:00 PM</p>
+                  <p className="text-gray-600">Tuesday: 6:30 AM - 6:00 PM</p>
+                  <p className="text-gray-600">Wednesday: 6:30 AM - 7:00 PM</p>
+                  <p className="text-gray-600">Thursday: 6:30 AM - 7:00 PM</p>
+                  <p className="text-gray-600">Friday: 6:30 AM - 7:00 PM</p>
                   <p className="text-gray-600">Saturday: 6:30 AM - 5:00 PM</p>
                   <p className="text-gray-600">Sunday: 6:30 AM - 4:00 PM</p>
                 </div>
